@@ -3,6 +3,7 @@ package com.joshua.insureflow.customer;
 import com.joshua.insureflow.customer.dto.CustomerRequest;
 import com.joshua.insureflow.customer.dto.CustomerResponse;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,13 +30,10 @@ public class CustomerController {
     public ResponseEntity<CustomerResponse> createCustomer(@Valid @RequestBody CustomerRequest request) {
         CustomerResponse created = customerService.createCustomer(request);
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(created.id())
-                .toUri();
 
-        return ResponseEntity.created(location).body(created);
-    }
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .header("api.customers" + created.id()).body(created);   }
 
     @GetMapping("/{id}")
     public CustomerResponse getCustomer(@PathVariable Long id) {

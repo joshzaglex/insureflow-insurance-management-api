@@ -52,6 +52,7 @@ Statuses: PENDING, ACTIVE, EXPIRED, CANCELLED.
 | P-7 | Only ACTIVE policies can receive claims | 422 |
 | P-8 | A scheduled job runs daily at 00:05 and sets every ACTIVE policy whose `expiryDate` is before today to EXPIRED. It touches no other status. | n/a |
 | P-9 | Because the job can be late or down, claim eligibility also checks dates (see CL-4). Status alone is never trusted. | 422 |
+| P-10 | A customer cannot hold two policies of the same type whose periods overlap, when the existing one is PENDING or ACTIVE. | 422 |
 
 ### Policy transition table
 
