@@ -35,7 +35,7 @@ A failed operation saves nothing.
 | C-3 | `email` must be unique, compared case-insensitively | 409 |
 | C-4 | Requesting a customer ID that doesn't exist | 404 |
 
----
+--- 
 
 ## 2. Policy rules
 

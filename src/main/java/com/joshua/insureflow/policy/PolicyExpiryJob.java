@@ -17,7 +17,7 @@ public class PolicyExpiryJob {
     }
 
     // Daily at 00:05 (P-8)
-    @Scheduled(cron = "0 5 0 * * *", zone = "Africa/Lagos")
+    @Scheduled(cron = "0 * * * * *", zone = "Africa/Lagos")
     public void expireOverduePolicies() {
         int count = policyService.expireOverduePolicies();
         log.info("Policy expiry job finished: {} policies set to EXPIRED", count);
